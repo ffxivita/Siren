@@ -1,0 +1,62 @@
+﻿name: 🐛 Bug
+title: "Bug: "
+description: Riporta Errori e Bug
+labels: "type | bug"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazie per aver compilato una segnalazione di Bug! Per corteisa compila tutti i campi sottostanti per aiutarci a risolvere il tuo problema nel più breve tempo possibile.
+
+  - type: checkboxes
+    attributes:
+      label: Checklist Pre-report 
+      description: Prima di compilare questo report, Ho fatto queste cose
+      options:
+        - label: Ho cercato fra le issue presenti e non ho trovato la mia, o quelle esistente non vanno bene.
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Sommario Bug
+      description: Scrivi un piccolo sommario del bug che hai trovato
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Step per riprodurre il Bug
+      description: Step per riprodurre il comportamento anomalo / errorw
+      placeholder: |
+        1. Fai questo '...'
+        2. Poi questo '...'
+        3. Bug/Errore compare '...'
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Dalamud.log
+      description: Lo trovi qui di solito `%AppData%\Roaming\XIVLauncher\Dalamud.log`. Incollalo qui.
+      render: Text
+    validations:
+      required: false
+
+  - type: dropdown
+    attributes:
+      label: Sistema Operativo
+      description: Su quale sistema operativo si è scatenato?
+      options:
+        - Windows
+        - Linux
+        - MacOS
+        - Non in Lista (Aggiungi)
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Altre informazioni
+      description: Qualsiasi cosa tu creda possa essere rilevante a fini della segnaalazione.
+    validations:
+      required: false

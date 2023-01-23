@@ -1,0 +1,5 @@
+﻿changes | ci:
+  - ".github/workflows/**/*"
+
+changes | plugin:
+  - "Siren/**/*"
