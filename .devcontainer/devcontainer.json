@@ -1,5 +1,5 @@
 ﻿{
-  "dockerfile": "Dockerfile",
+  "dockerFile": "Dockerfile",
   "updateRemoteUserUID": true,
   "containerUser": "dev",
   "remoteUser": "dev",
