@@ -1,6 +1,7 @@
 name: "\U0001F41B Bug"
 description: Segnala errori o comportamenti anomali
 title: Bug
+assignees: DarkArtek
 labels: 'bug,needs-triage'
 body:
   - type: markdown
@@ -37,3 +38,39 @@ body:
         3. Ecco il bug
     validations:
       required: true
+  - type: textarea
+    id: dalamud-log
+    attributes:
+      label: Dalamud.Log
+      description: 'Lo trovi qui `%AppData%\Roaming\XIVLauncher\Dalamud.log`, incollalo qui.'
+      render: text
+      validations:
+        required: false
+  - type: dropdown
+    id: operating-system-drop
+    attributes:
+      label: Sistema Operativo
+      description: Su quale sistema operativo hai avuto il problema?
+      options: Windows Linux MacOs Non in Lista (scrivi sotto)
+    validations:
+      required: true
+  - type: markdown
+    id: text-op-sys
+    attributes:
+      value: 'Se prima hai selezionato non in lista, scrivi il tuo sistema operativo'
+  - type: input
+    id: operating-system-text
+    attributes:
+      labels: Sistema Operativo
+      description: >-
+        Inserisci il nome e la versione del tuo sistema operativo se diverso dal
+        menù soprastante
+      validations:
+        required: false
+  - type: textarea
+    id: other-things
+    attributes:
+      value: Info Addizionali
+      description: Qualsiasi altra cosa ti venga in mente e che il team debba sapere.
+    validations:
+      required: false
