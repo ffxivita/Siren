@@ -65,8 +65,8 @@ body:
       description: >-
         Inserisci il nome e la versione del tuo sistema operativo se diverso dal
         menù soprastante
-      validations:
-        required: false
+    validations:
+      required: false
   - type: textarea
     id: other-things
     attributes:
