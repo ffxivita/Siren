@@ -1,62 +1,21 @@
-﻿name: 🐛 Bug report
-title: "Bug: "
+name: 🐛 Bug
 description: Segnala errori o comportamenti anomali
-labels: "type | bug"
+title: Bug
+labels: "bug,needs-triage"
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Grazie per aver trovato il tempo per questo report! Compila tutti i campi sottostanti per permettere una risoluzione in tempi brevi.
-
-  - type: checkboxes
-    attributes:
-      label: Pre-report Checklist
-      description: Prima di fare questo report, ho fatto questo
-      options:
-        - label: Ho cercato fra le issues esistenti e non ho trovato la mia o il problema relativo.
-          required: true
-
-  - type: textarea
-    attributes:
-      label: Sommario
-      description: scivi un riassunto di cosa è successo.
-    validations:
-      required: true
-
-  - type: textarea
-    attributes:
-      label: Passi per riprodurre
-      description: Passi per riprodurre l'errore / comportamento anomalo
-      placeholder: |
-        1. Fai questo '...'
-        2. Poi fai questo '...'
-        3. Ecco il Bug / Errore '...'
-    validations:
-      required: false
-
-  - type: textarea
-    attributes:
-      label: Dalamud.log
-      description: Lo trovi qui `%AppData%\Roaming\XIVLauncher\Dalamud.log`, incollalo qui.
-      render: Text
-    validations:
-      required: false
-
-  - type: dropdown
-    attributes:
-      label: Sistema Operativo
-      description: Su quale sistema hai avuto il problema?
-      options:
-        - Windows
-        - Linux
-        - MacOS
-        - Non in lista (scrivi)
-    validations:
-      required: true
-
-  - type: textarea
-    attributes:
-      label: Info Addizionali
-      description: Qualsiasi altra cosa che ritieni necessaria che il team debba sapere.
-    validations:
-      required: false
+- type: markdown
+  id: thankyou
+  attributes:
+    value: |
+      Grazie per questa segnalazione!
+- type: dropdown
+  id: check-confirm
+  attributes:
+    label: Confermi che hai cercato fra le issue esistenti e non hai trovato quello che cercavi?
+    options:
+      - Confermo
+      - Le issue presenti non rispondono alla mia domanda
+   validations:
+    required: true
+   
+   
