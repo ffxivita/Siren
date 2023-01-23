@@ -23,7 +23,7 @@ body:
     id: summary
     attributes:
       label: Sommario
-      descritpion: Scrivi un riassunto di quanto è successo.
+      description: Scrivi un riassunto di quanto è successo.
     validations:
       required: true
   - type: textarea
