@@ -1,0 +1,11 @@
+﻿{
+  "omnisharp.enableRoslynAnalyzers": true,
+  "omnisharp.enableImportCompletion": true,
+  "omnisharp.organizeImportsOnFormat": true,
+  "omnisharp.enableAsyncCompletion": true,
+  "omnisharp.analyzeOpenDocumentsOnly": false,
+  "omnisharp.enableEditorConfigSupport": true,
+  "csharp.format.enable": true,
+  "csharp.referencesCodeLens.enabled": true,
+  "csharpfixformat.enable": true
+}
