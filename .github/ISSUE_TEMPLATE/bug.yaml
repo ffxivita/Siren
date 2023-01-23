@@ -6,57 +6,56 @@ body:
   - type: markdown
     attributes:
       value: |
-        Grazie per aver compilato una segnalazione di Bug! Per corteisa compila tutti i campi sottostanti per aiutarci a risolvere il tuo problema nel più breve tempo possibile.
-
+        Grazie per aver aperto una segnalzione! 🎉
+        Per favore, assicurati di aver letto il [File Leggimi](README.md)
+        e di aver seguito le [Linee Guida](CONTRIBUTING.md) prima di aprire una segnalazione.
   - type: checkboxes
     attributes:
-      label: Checklist Pre-report 
-      description: Prima di compilare questo report, Ho fatto queste cose
-      options:
-        - label: Ho cercato fra le issue presenti e non ho trovato la mia, o quelle esistente non vanno bene.
-          required: true
-
+      label: "📝 Assicurati di aver controllato"
+      description: Confermo di aver cercato fra le segnalazioni aperte e chiuse, ma non ho trovato nulla simile.
+      required: true
+  
   - type: textarea
     attributes:
-      label: Sommario Bug
-      description: Scrivi un piccolo sommario del bug che hai trovato
+      label: Sommario
+      description: scivi un riassunto di cosa è successo.
     validations:
       required: true
 
   - type: textarea
     attributes:
-      label: Step per riprodurre il Bug
-      description: Step per riprodurre il comportamento anomalo / errore
+      label: Passi per riprodurre
+      description: Passi per riprodurre l'errore / comportamento anomalo
       placeholder: |
         1. Fai questo '...'
-        2. Poi questo '...'
-        3. Bug/Errore compare '...'
+        2. Poi fai questo '...'
+        3. Ecco il Bug / Errore '...'
     validations:
       required: false
-
+  
   - type: textarea
     attributes:
-      label: Dalamud.log
-      description: Lo trovi qui di solito `%AppData%\Roaming\XIVLauncher\Dalamud.log`. Incollalo qui.
-      render: Text
+      laberl: Dalamud.Log
+      description: Lo trovi qui `%AppData%\Roaming\XIVLauncher\Dalamud.log`, incollalo qui.
+      render: text
     validations:
       required: false
-
+  
   - type: dropdown
     attributes:
       label: Sistema Operativo
-      description: Su quale sistema operativo si è scatenato?
+      description: Su quale sistema hai avuto il problema?
       options:
         - Windows
+        - macOS
         - Linux
-        - MacOS
-        - Non in Lista (Aggiungi)
+        - Altro (Specifica)
     validations:
       required: true
-
+  
   - type: textarea
     attributes:
-      label: Altre informazioni
-      description: Qualsiasi cosa tu creda possa essere rilevante a fini della segnaalazione.
+      label: Informazioni aggiuntive
+      description: Qualsiasi altra informazione che ritieni utile.
     validations:
       required: false
