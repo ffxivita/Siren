@@ -44,8 +44,8 @@ body:
       label: Dalamud.Log
       description: 'Lo trovi qui `%AppData%\Roaming\XIVLauncher\Dalamud.log`, incollalo qui.'
       render: text
-      validations:
-        required: false
+    validations:
+      required: false
   - type: dropdown
     id: operating-system-drop
     attributes:
