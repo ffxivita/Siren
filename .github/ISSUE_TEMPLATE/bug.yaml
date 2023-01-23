@@ -26,7 +26,7 @@ body:
   - type: textarea
     attributes:
       label: Step per riprodurre il Bug
-      description: Step per riprodurre il comportamento anomalo / errorw
+      description: Step per riprodurre il comportamento anomalo / errore
       placeholder: |
         1. Fai questo '...'
         2. Poi questo '...'
