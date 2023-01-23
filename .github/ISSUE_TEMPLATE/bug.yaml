@@ -1,21 +1,39 @@
-name: 🐛 Bug
+name: "\U0001F41B Bug"
 description: Segnala errori o comportamenti anomali
 title: Bug
-labels: "bug,needs-triage"
+labels: 'bug,needs-triage'
 body:
-- type: markdown
-  id: thankyou
-  attributes:
-    value: |
-      Grazie per questa segnalazione!
-- type: dropdown
-  id: check-confirm
-  attributes:
-    label: Confermi che hai cercato fra le issue esistenti e non hai trovato quello che cercavi?
-    options:
-      - Confermo
-      - Le issue presenti non rispondono alla mia domanda
-   validations:
-    required: true
-   
-   
+  - type: markdown
+    id: thankyou
+    attributes:
+      value: |
+        Grazie per questa segnalazione!
+  - type: dropdown
+    id: check-confirm
+    attributes:
+      label: >-
+        Confermi che hai cercato fra le issue esistenti e non hai trovato quello
+        che cercavi?
+      options:
+        - Confermo
+        - Le issue presenti non rispondono alla mia domanda
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Sommario
+      descritpion: Scrivi un riassunto di quanto è successo.
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Passi per riprodurre
+      description: Passi per riprodurre l'errore o comportamento anomalo
+      placeholder: |
+        1. Fai questo '...'
+        2. Poi questo '...'
+        3. Ecco il bug
+    validations:
+      required: true
