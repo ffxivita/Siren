@@ -1,20 +1,21 @@
-﻿name: 🐛 Bug
+﻿name: 🐛 Bug report
 title: "Bug: "
-description: Riporta Errori e Bug
+description: Segnala errori o comportamenti anomali
 labels: "type | bug"
 body:
   - type: markdown
     attributes:
       value: |
-        Grazie per aver aperto una segnalzione! 🎉
-        Per favore, assicurati di aver letto il [File Leggimi](README.md)
-        e di aver seguito le [Linee Guida](CONTRIBUTING.md) prima di aprire una segnalazione.
+        Grazie per aver trovato il tempo per questo report! Compila tutti i campi sottostanti per permettere una risoluzione in tempi brevi.
+
   - type: checkboxes
     attributes:
-      label: "📝 Assicurati di aver controllato"
-      description: Confermo di aver cercato fra le segnalazioni aperte e chiuse, ma non ho trovato nulla simile.
-      required: true
-  
+      label: Pre-report Checklist
+      description: Prima di fare questo report, ho fatto questo
+      options:
+        - label: Ho cercato fra le issues esistenti e non ho trovato la mia o il problema relativo.
+          required: true
+
   - type: textarea
     attributes:
       label: Sommario
@@ -32,30 +33,30 @@ body:
         3. Ecco il Bug / Errore '...'
     validations:
       required: false
-  
+
   - type: textarea
     attributes:
-      laberl: Dalamud.Log
+      label: Dalamud.log
       description: Lo trovi qui `%AppData%\Roaming\XIVLauncher\Dalamud.log`, incollalo qui.
-      render: text
+      render: Text
     validations:
       required: false
-  
+
   - type: dropdown
     attributes:
       label: Sistema Operativo
       description: Su quale sistema hai avuto il problema?
       options:
         - Windows
-        - macOS
         - Linux
-        - Altro (Specifica)
+        - MacOS
+        - Non in lista (scrivi)
     validations:
       required: true
-  
+
   - type: textarea
     attributes:
-      label: Informazioni aggiuntive
-      description: Qualsiasi altra informazione che ritieni utile.
+      label: Info Addizionali
+      description: Qualsiasi altra cosa che ritieni necessaria che il team debba sapere.
     validations:
       required: false
