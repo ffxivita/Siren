@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Dalamud;
 using Lumina.Excel;
 using Siren.Caching.Collections;
