@@ -3,13 +3,13 @@ using System.Runtime.CompilerServices;
 using Dalamud.Logging;
 
 namespace Siren
-{{
+{
     /// <summary>
-    ///     Logging utility wrapping <see cref="PluginLog"/> with a nicer format, for use internally by Sirensong itself.
+    ///     Logging utility wrapping <see cref="PluginLog"/> with a nicer format, for use internally by Siren itself.
     /// </summary>
     /// <remarks>
     ///     This class is not intended to be used by plugins because of the way Dalamud handles logging.
-    ///     If this class is used inside of a plugin, ti will show up as "Sirensong" in the log.
+    ///     If this class is used inside of a plugin, ti will show up as "Siren" in the log.
     /// </remarks>
     internal static class SirenLog
     {
