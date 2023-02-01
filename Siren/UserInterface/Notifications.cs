@@ -5,13 +5,10 @@ using Siren.Game.Enums;
 
 namespace Siren.UserInterface
 {
-    /// <summary>
-    ///     A collection of UI elements for ImGui.
-    /// </summary>
-    public static partial class SiUI
+    public static partial class SiGui
     {
         /// <summary>
-        ///     Shows a toast notification, wrapper for <see cref="UiBuilder.AddNotification(string, string?, NotificationType, uint)"/>
+        /// Shows a toast notification, wrapper for <see cref="UiBuilder.AddNotification(string, string?, NotificationType, uint)"/>
         /// </summary>
         /// <param name="message">The message to display.</param>
         /// <param name="type">The type of notification.</param>

@@ -10,23 +10,23 @@ using Siren.UserInterface.Services;
 namespace Siren.UserInterface.Windowing
 {
     /// <summary>
-    ///     Wrapper for <see cref="WindowSystem" /> that adds some additional functionality.
+    /// Wrapper for <see cref="WindowSystem" /> that adds some additional functionality.
     /// </summary>
     [SirenServiceClass]
     public sealed class WindowingSystem : IDisposable
     {
         /// <summary>
-        ///     The linked Dalamud <see cref="WindowSystem" />
+        /// The linked Dalamud <see cref="WindowSystem" />
         /// </summary>
         private readonly WindowSystem windowSystem;
 
         /// <summary>
-        ///     The namespace of the plugin that owns this <see cref="WindowingSystem"/>.
+        /// The namespace of the plugin that owns this <see cref="WindowingSystem"/>.
         /// </summary>
         private readonly string uiNamespace;
 
         /// <summary>
-        ///     The config window to use for <see cref="UiBuilder.OpenConfigUi"/>.
+        /// The config window to use for <see cref="UiBuilder.OpenConfigUi"/>.
         /// </summary>
         public Window? ConfigWindow { get; private set; }
 
@@ -34,7 +34,7 @@ namespace Siren.UserInterface.Windowing
         private ClipboardService Clipboard { get; } = SirenCore.IoC.GetOrCreateService<ClipboardService>();
 
         /// <summary>
-        ///    Constructs a new <see cref="WindowingSystem"/>.
+        ///Constructs a new <see cref="WindowingSystem"/>.
         /// </summary>
         internal WindowingSystem()
         {
@@ -44,7 +44,7 @@ namespace Siren.UserInterface.Windowing
         }
 
         /// <summary>
-        ///     Disposes of the windowing manager and all windows that are bound to it.
+        /// Disposes of the windowing manager and all windows that are bound to it.
         /// </summary>
         public void Dispose()
         {
@@ -59,7 +59,7 @@ namespace Siren.UserInterface.Windowing
         }
 
         /// <summary>
-        ///     Draws all windows in the windowing system, with Sirens added providers.
+        /// Draws all windows in the windowing system, with Sirens added providers.
         /// </summary>
         private void Draw()
         {
@@ -73,15 +73,11 @@ namespace Siren.UserInterface.Windowing
         }
 
         /// <summary>
-        ///     Sets the config window to use for <see cref="UiBuilder.OpenConfigUi"/>.
+        /// Sets the config window to use for <see cref="UiBuilder.OpenConfigUi"/>.
         /// </summary>
         /// <param name="window">The window to use as the config window.</param>
-        private void SetConfigWindow(Window window)
+        public void SetConfigWindow(Window window)
         {
-            SirenLog.IVerbose(this.ConfigWindow == window
-                ? $"Overwriting existing config window {this.ConfigWindow.WindowName} with {window.WindowName} for {this.uiNamespace}"
-                : $"Setting config window for {this.uiNamespace}");
-
             if (this.ConfigWindow == null)
             {
                 SharedServices.UiBuilder.OpenConfigUi += this.ToggleConfigWindow;
@@ -90,57 +86,46 @@ namespace Siren.UserInterface.Windowing
         }
 
         /// <summary>
-        ///     Unset the config window for <see cref="UiBuilder.OpenConfigUi"/>.
+        /// Unset the config window for <see cref="UiBuilder.OpenConfigUi"/>.
         /// </summary>
-        private void UnsetConfigWindow()
+        public void UnsetConfigWindow()
         {
             if (this.ConfigWindow != null)
             {
                 SharedServices.UiBuilder.OpenConfigUi -= this.ToggleConfigWindow;
                 this.ConfigWindow = null;
             }
-            SirenLog.IVerbose($"Unset config window for {this.uiNamespace}");
         }
 
         /// <summary>
-        ///    Gets all windows in the windowing system.
+        ///Gets all windows in the windowing system.
         /// </summary>
         /// <returns>An array of all windows in the windowing system.</returns>
         public IReadOnlyList<Window> Windows => this.windowSystem.Windows;
 
         /// <summary>
-        ///     Gets a window by name.
-        /// </summary>
-        /// <param name="name">The name of the window to get.</param>
-        /// <returns>The window with the specified name, or null if it does not exist.</returns>
-        public Window? GetWindow(string name) => this.windowSystem.GetWindow(name);
-
-        /// <summary>
-        ///     Gets a window by type.
+        /// Gets a window by type.
         /// </summary>
         /// <typeparam name="T">The type of window to get.</typeparam>
         /// <returns>The first window with the specified type in the windowing system, or null if it does not exist.</returns>
         public Window? GetWindow<T>() where T : Window => this.Windows.FirstOrDefault(window => window is T);
 
         /// <summary>
-        ///     Tries to get a window by name.
-        /// </summary>
-        /// <param name="name">The name of the window to get.</param>
-        /// <param name="windowOut">The window with the specified name, or null if it does not exist.</param>
-        public void TryGetWindow(string name, out Window? windowOut) => windowOut = this.windowSystem.GetWindow(name);
-
-        /// <summary>
-        ///     Tries to get a window by type.
+        /// Tries to get a window by type.
         /// </summary>
         /// <typeparam name="T">The type of window to get.</typeparam>
         /// <param name="windowOut">The window with the specified type, or null if it does not exist.</param>
-        public void TryGetWindow<T>(out Window? windowOut) where T : Window => windowOut = this.GetWindow<T>();
+        public bool TryGetWindow<T>(out Window windowOut) where T : Window
+        {
+            windowOut = this.GetWindow<T>()!;
+            return windowOut != null;
+        }
 
         /// <summary>
-        ///     Adds a window to the windowing system.
+        /// Adds a window to the windowing system.
         /// </summary>
         /// <remarks>
-        ///     If multiple windows are added as config windows, the last one added will be used.
+        /// If multiple windows are added as config windows, the last one added will be used.
         /// </remarks>
         /// <param name="window">The window to add.</param>
         /// <param name="isConfigWindow">Whether or not the window is the config window.</param>
@@ -157,10 +142,10 @@ namespace Siren.UserInterface.Windowing
         }
 
         /// <summary>
-        ///     Adds all passed windows to the windowing system.
+        /// Adds all passed windows to the windowing system.
         /// </summary>
         /// <remarks>
-        ///    If multiple windows are added as config windows, the last one added will be used.
+        ///If multiple windows are added as config windows, the last one added will be used.
         /// </remarks>
         /// <params name="windows">The windows to add.</params>
         public void AddWindows(Dictionary<Window, bool> windows)
@@ -172,7 +157,7 @@ namespace Siren.UserInterface.Windowing
         }
 
         /// <summary>
-        ///     Removes a window from the windowing system and disposes of it if it implements <see cref="IDisposable"/>.
+        /// Removes a window from the windowing system and disposes of it if it implements <see cref="IDisposable"/>.
         /// </summary>
         /// <param name="window">The window to remove.</param>
         public void RemoveWindow(Window window)
@@ -193,10 +178,10 @@ namespace Siren.UserInterface.Windowing
         }
 
         /// <summary>
-        ///    Checks to see if any windows are open.
+        ///Checks to see if any windows are open.
         /// </summary>
         /// <returns>True if any windows are open, false otherwise.</returns>
-        public bool AnyWindowsOpen()
+        internal bool AnyWindowsOpen()
         {
             foreach (var window in this.windowSystem.Windows)
             {
@@ -205,13 +190,14 @@ namespace Siren.UserInterface.Windowing
                     return true;
                 }
             }
+
             return false;
         }
 
         /// <summary>
-        ///     Toggles the open state of the configuration window.
+        /// Toggles the open state of the configuration window.
         /// </summary>
-        public void ToggleConfigWindow()
+        internal void ToggleConfigWindow()
         {
             if (this.ConfigWindow == null)
             {

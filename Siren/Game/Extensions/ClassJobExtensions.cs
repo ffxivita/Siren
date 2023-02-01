@@ -4,12 +4,12 @@ using Siren.Game.Enums;
 namespace Siren.Game.Extensions
 {
     /// <summary>
-    ///     Extensions for <see cref="ClassJob"/>.
+    /// Extensions for <see cref="ClassJob"/>.
     /// </summary>
     public static class ClassJobExtensions
     {
         /// <summary>
-        ///     Gets the role name for the given <see cref="ClassJob"/>.
+        /// Gets the role name for the given <see cref="ClassJob"/>.
         /// </summary>
         /// <param name="job"></param>
         /// <returns></returns>

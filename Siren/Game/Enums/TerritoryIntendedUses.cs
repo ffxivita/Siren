@@ -1,12 +1,11 @@
 using Lumina.Excel.GeneratedSheets;
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace Siren.Game.Enums
 {
     /// <summary>
-    ///     A mapping of <see cref="TerritoryType.TerritoryIntendedUse"/> IDs to their names.
+    /// A mapping of <see cref="TerritoryType.TerritoryIntendedUse"/> IDs to their names.
     /// </summary>
-    public enum TerritoryIntendedUses : byte
+    public enum TerritoryIntendedUseType : byte
     {
         City = 0,
         OpenWorld = 1,
