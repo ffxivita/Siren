@@ -6,27 +6,24 @@ using System.Reflection;
 namespace Siren.IoC.Internal
 {
     /// <summary>
-    /// Handles the creation and management of services.
+    ///     Handles the creation and management of services.
     /// </summary>
-    internal sealed class ServiceContainer : IServiceProvider, IDisposable
+    internal sealed class SirenServiceContainer : IServiceProvider, IDisposable
     {
-        /// <summary>
-        /// Creates a new instance of the <see cref="ServiceContainer"/> class.
-        /// </summary>
-        internal ServiceContainer() { }
 
         /// <summary>
-        /// The services held by the <see cref="ServiceContainer"/>.
+        ///     The services held by the <see cref="SirenServiceContainer" />.
         /// </summary>
-        private readonly Lazy<List<object>> services = new(() => new List<object>(), true);
+        private readonly Lazy<HashSet<object>> services = new(() => new HashSet<object>(), true);
 
         /// <summary>
-        /// Whether or not the <see cref="ServiceContainer"/> has been disposed of.
+        ///     Whether or not the <see cref="SirenServiceContainer" /> has been disposed of.
         /// </summary>
         private bool disposedValue;
 
         /// <summary>
-        /// Disposes of the <see cref="ServiceContainer"/> and all services contained within it that implement <see cref="IDisposable"/>.
+        ///     Disposes of the <see cref="SirenServiceContainer" /> and all services contained within it that implement
+        ///     <see cref="IDisposable" />.
         /// </summary>
         public void Dispose()
         {
@@ -36,18 +33,33 @@ namespace Siren.IoC.Internal
                 {
                     if (service is IDisposable disposableService)
                     {
-                        SirenLog.IVerbose($"Disposing of service {disposableService.GetType().Name}.");
+                        SirenLog.Debug($"Disposing of SirenService: {service.GetType().FullName}.");
                         disposableService.Dispose();
                     }
                 }
+                this.services.Value.Clear();
 
-                SirenLog.IVerbose("Disposed of the service container and all services.");
                 this.disposedValue = true;
             }
         }
 
         /// <summary>
-        /// A boolean value indicating if the given type is a valid service.
+        ///     Gets a service from the service container.
+        /// </summary>
+        /// <param name="type">The type of the service to get.</param>
+        /// <exception cref="ObjectDisposedException">Thrown if the service container has been disposed.</exception>
+        /// <returns>The service, or null if it was not found.</returns>
+        public object? GetService(Type type)
+        {
+            if (this.disposedValue)
+            {
+                throw new ObjectDisposedException(nameof(SirenServiceContainer));
+            }
+            return this.services.Value.FirstOrDefault(service => service.GetType() == type);
+        }
+
+        /// <summary>
+        ///     A boolean value indicating if the given type is a valid service.
         /// </summary>
         private static bool IsValidService(Type type)
         {
@@ -60,87 +72,66 @@ namespace Siren.IoC.Internal
         }
 
         /// <summary>
-        /// Creates a new instance of the given service type and adds it to the service container if it is valid.
+        ///     Creates a new instance of the given service type and adds it to the service container if it is valid.
         /// </summary>
         /// <param name="type">The type of the service to add.</param>
         /// <exception cref="ObjectDisposedException">Thrown if the service container has been disposed.</exception>
         /// <exception cref="InvalidOperationException">Thrown if the service type is not valid.</exception>
         /// <exception cref="InvalidOperationException">Thrown if the service type already exists.</exception>
         /// <exception cref="InvalidOperationException">Thrown if the service type does not have a parameterless constructor.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="type"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="type" /> is null.</exception>
         /// <returns>The newly created service.</returns>
         internal object CreateService(Type type)
         {
             if (this.disposedValue)
             {
-                throw new ObjectDisposedException(nameof(ServiceContainer));
+                throw new ObjectDisposedException(nameof(SirenServiceContainer));
             }
 
             if (!IsValidService(type))
             {
-                throw new InvalidOperationException($"Cannot create service of type {type.Name} because it is not a valid service.");
+                throw new InvalidOperationException($"Cannot create service of type {type.FullName} because it is not a valid service.");
             }
 
             var existingService = this.GetService(type);
             if (existingService != null)
             {
-                throw new InvalidOperationException($"Cannot create service of type {type.Name} because it already exists.");
+                throw new InvalidOperationException($"Cannot create service of type {type.FullName} because it already exists.");
             }
 
-            var constructor = type.GetConstructor(Type.EmptyTypes);
-            if (constructor == null)
-            {
-                throw new InvalidOperationException($"Cannot create service of type {type.Name} because it does not have a parameterless constructor.");
-            }
-
-            var service = constructor.Invoke(null);
+            var service = Activator.CreateInstance(type, true);
             if (service == null)
             {
                 throw new ArgumentNullException(service?.GetType().Name);
             }
 
             this.services.Value.Add(service);
-            SirenLog.IVerbose($"Successfully created service of type {service.GetType().Name}.");
+            SirenLog.Debug($"Added SirenService {service.GetType().FullName} to container.");
             return service;
         }
 
-        /// <inheritdoc cref="CreateService(Type)"/>
+        /// <inheritdoc cref="CreateService(Type)" />
         /// <typeparam name="T">The type of the service to add.</typeparam>
         internal T CreateService<T>() where T : class => (T)this.CreateService(typeof(T));
 
-        /// <summary>
-        /// Gets a service from the service container.
-        /// </summary>
-        /// <param name="type">The type of the service to get.</param>
-        /// <exception cref="ObjectDisposedException">Thrown if the service container has been disposed.</exception>
-        /// <returns>The service, or null if it was not found.</returns>
-        public object? GetService(Type type)
-        {
-            if (this.disposedValue)
-            {
-                throw new ObjectDisposedException(nameof(ServiceContainer));
-            }
-            return this.services.Value.FirstOrDefault(service => service.GetType() == type);
-        }
-
-        /// <inheritdoc cref="GetService(Type)"/>
+        /// <inheritdoc cref="GetService(Type)" />
         /// <typeparam name="T">The type of the service to get.</typeparam>
         public T? GetService<T>() where T : class => (T?)this.GetService(typeof(T));
 
         /// <summary>
-        /// Gets or creates a service from the service container.
+        ///     Gets or creates a service from the service container.
         /// </summary>
         /// <param name="type">The type of the service to get.</param>
         /// <exception cref="ObjectDisposedException">Thrown if the service container has been disposed.</exception>
         /// <returns>The service.</returns>
         internal object GetOrCreateService(Type type) => this.GetService(type) ?? this.CreateService(type);
 
-        /// <inheritdoc cref="GetOrCreateService(Type)"/>
+        /// <inheritdoc cref="GetOrCreateService(Type)" />
         /// <typeparam name="T">The type of the service to get.</typeparam>
         internal T GetOrCreateService<T>() where T : class => (T)this.GetOrCreateService(typeof(T));
 
         /// <summary>
-        /// Removes a service from the service container and disposes it if it implements <see cref="IDisposable"/>.
+        ///     Removes a service from the service container and disposes it if it implements <see cref="IDisposable" />.
         /// </summary>
         /// <exception cref="ObjectDisposedException">Thrown if the service container has been disposed.</exception>
         /// <param name="service">The type of the service to remove.</param>
@@ -148,7 +139,7 @@ namespace Siren.IoC.Internal
         {
             if (this.disposedValue)
             {
-                throw new ObjectDisposedException(nameof(ServiceContainer));
+                throw new ObjectDisposedException(nameof(SirenServiceContainer));
             }
 
             if (service is IDisposable disposable)
@@ -156,25 +147,27 @@ namespace Siren.IoC.Internal
                 disposable.Dispose();
             }
 
+            SirenLog.Debug($"Service {service.FullName} removed from service container.");
             this.services.Value.Remove(service);
         }
 
-        /// <inheritdoc cref="RemoveService(Type)"/>
+        /// <inheritdoc cref="RemoveService(Type)" />
         /// <typeparam name="T">The type of the service to remove.</typeparam>
         internal void RemoveService<T>() => this.RemoveService(typeof(T));
 
         /// <summary>
-        /// Injects services into a class.
+        ///     Injects services into a class.
         /// </summary>
         /// <typeparam name="T">The type of the class to inject services into.</typeparam>
         /// <remarks>
-        /// <para>
-        ///  This method will inject services into any static properties of the class that are marked with the <see cref="SirenServiceAttribute"/> attribute
-        ///  and are internally marked with <see cref="SirenServiceClassAttribute"/> .
-        /// </para>
-        /// <para>
-        ///  If something goes wrong while injecting a service, an error will be thrown.
-        /// </para>
+        ///     <para>
+        ///         This method will inject services into any static properties of the class that are marked with the
+        ///         <see cref="SirenServiceAttribute" /> attribute
+        ///         and are internally marked with <see cref="SirenServiceClassAttribute" /> .
+        ///     </para>
+        ///     <para>
+        ///         If something goes wrong while injecting a service, an error will be thrown.
+        ///     </para>
         /// </remarks>
         /// <exception cref="ObjectDisposedException">Thrown if the service container has been disposed.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the class to inject services into is null.</exception>
@@ -182,7 +175,7 @@ namespace Siren.IoC.Internal
         {
             if (this.disposedValue)
             {
-                throw new ObjectDisposedException(nameof(ServiceContainer));
+                throw new ObjectDisposedException(nameof(SirenServiceContainer));
             }
 
             var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
@@ -197,12 +190,12 @@ namespace Siren.IoC.Internal
 
                 if (!IsValidService(property.PropertyType))
                 {
-                    throw new InvalidOperationException($"Cannot inject service of type {property.PropertyType.Name} into class {typeof(T).Name} because it is not a valid service.");
+                    throw new InvalidOperationException($"Cannot inject service of type {property.PropertyType.FullName} into class {typeof(T).FullName} because it is not a valid service.");
                 }
 
                 var service = this.GetOrCreateService(property.PropertyType);
                 property.SetValue(null, service);
-                SirenLog.IVerbose($"Successfully injected service of type {service.GetType().Name} into class {typeof(T).Name}.");
+                SirenLog.Debug($"Injected service {service.GetType().FullName} into class {typeof(T).FullName}.");
             }
         }
     }

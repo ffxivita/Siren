@@ -1,14 +1,13 @@
 using Lumina.Excel.GeneratedSheets;
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace Siren.Game.Enums
 {
     /// <summary>
-    /// A mapping of <see cref="OnlineStatus"/> IDs to their names.
+    ///     A mapping of <see cref="OnlineStatus" /> IDs to their names.
     /// </summary>
     public enum OnlineStatusType : uint
     {
-        GameQA = 1,
+        GameQa = 1,
         GameMaster = 2,
         GameMaster2 = 3,
         EventParticipant = 4,
@@ -24,7 +23,7 @@ namespace Siren.Game.Enums
         PlayingTripleTriad = 14,
         ViewingCutscene = 15,
         UsingChocoboPorter = 16,
-        AFK = 17,
+        Afk = 17,
         CameraMode = 18,
         LookingForRepairs = 19,
         LookingForRepair = 20,

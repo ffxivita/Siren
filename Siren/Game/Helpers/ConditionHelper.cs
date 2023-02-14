@@ -1,19 +1,22 @@
 using Dalamud.Game.ClientState.Conditions;
 using Siren.Game.Enums;
 
-namespace Siren.Game.State
+namespace Siren.Game.Helpers
 {
-    public static class Condition
+    /// <summary>
+    ///     Helper methods for interacting with the condition manager.
+    /// </summary>
+    public static class ConditionHelper
     {
         /// <summary>
-        /// Returns if the given condition flag is set.
+        ///     Returns if the given condition flag is set.
         /// </summary>
         /// <param name="flag">The condition flag to check.</param>
         /// <returns>True if the flag is set, false otherwise.</returns>
         public static bool HasFlag(ConditionFlag flag) => SharedServices.Condition[flag];
 
         /// <summary>
-        /// Returns if the player is bound by duty.
+        ///     Returns if the player is bound by duty.
         /// </summary>
         /// <returns>True if bound by duty, false otherwise.</returns>
         public static bool IsBoundByDuty()
@@ -24,12 +27,12 @@ namespace Siren.Game.State
             }
 
             return HasFlag(ConditionFlag.BoundByDuty) ||
-                   HasFlag(ConditionFlag.BoundByDuty56) ||
-                   HasFlag(ConditionFlag.BoundByDuty95);
+                HasFlag(ConditionFlag.BoundByDuty56) ||
+                HasFlag(ConditionFlag.BoundByDuty95);
         }
 
         /// <summary>
-        /// Returns if the player is in an island sanctuary.
+        ///     Returns if the player is in an island sanctuary.
         /// </summary>
         /// <returns>True if in an island sanctuary, false otherwise.</returns>
         public static bool IsInIslandSanctuary()
@@ -43,7 +46,7 @@ namespace Siren.Game.State
         }
 
         /// <summary>
-        /// Returns if the player is in a cutscene.
+        ///     Returns if the player is in a cutscene.
         /// </summary>
         /// <returns>True if in a cutscene, false otherwise.</returns>
         public static bool IsInCutscene()
@@ -52,7 +55,7 @@ namespace Siren.Game.State
                 HasFlag(ConditionFlag.WatchingCutscene78);
 
         /// <summary>
-        /// Returns if the player is currently moving between areas.
+        ///     Returns if the player is currently moving between areas.
         /// </summary>
         /// <returns>True if moving between areas, false otherwise.</returns>
         public static bool IsBetweenAreas()

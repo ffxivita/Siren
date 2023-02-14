@@ -1,31 +1,35 @@
 using System.Numerics;
-using Dalamud.Interface.Colors;
 
 namespace Siren.UserInterface.Style
 {
     /// <summary>
-    /// Colour values for UI design.
+    ///     Colour values for UI design.
     /// </summary>
     public static class Colours
     {
         /// <summary>
-        /// Colour for errors.
+        ///     Colour for errors.
         /// </summary>
-        public static Vector4 Error => ImGuiColors.DalamudRed;
+        public static readonly Vector4 Error = new(1f, 0.0f, 0.0f, 1f);
 
         /// <summary>
-        /// Colour for warnings.
+        ///     Colour for warnings.
         /// </summary>
-        public static Vector4 Warning => ImGuiColors.DalamudOrange;
+        public static readonly Vector4 Warning = new(1f, 0.709f, 0.0f, 1f);
 
         /// <summary>
-        /// Colour for success.
+        ///     Colour for success.
         /// </summary>
-        public static Vector4 Success => ImGuiColors.ParsedGreen;
+        public static readonly Vector4 Success = new(0.117f, 1f, 0.0f, 1f);
 
         /// <summary>
-        /// Colour for important information.
+        ///     Colour for info.
         /// </summary>
-        public static Vector4 Important => ImGuiColors.DalamudViolet;
+        public static readonly Vector4 Informational = new(0.0f, 0.6f, 1f, 1f);
+
+        /// <summary>
+        ///     Colour for important information.
+        /// </summary>
+        public static readonly Vector4 Important = new(0.77f, 0.7f, 0.965f, 1f);
     }
 }

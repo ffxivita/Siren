@@ -7,7 +7,7 @@ namespace Siren.Game.Enums
     /// <remarks>
     /// Reference image: https://github.com/ffxivita/Siren/blob/main/.assets/uiColours.png
     /// </remarks>
-    public enum ChatUiColourKey : ushort
+     public enum ChatUiColourKey : ushort
     {
         White1 = 0,
         White2 = 1,

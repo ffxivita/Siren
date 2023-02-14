@@ -3,24 +3,13 @@ using Siren.Game.Enums;
 
 namespace Siren.Game.Extensions
 {
-    /// <summary>
-    /// Extensions for <see cref="ClassJob"/>.
-    /// </summary>
     public static class ClassJobExtensions
     {
         /// <summary>
-        /// Gets the role name for the given <see cref="ClassJob"/>.
+        ///     Get class job role from class job
         /// </summary>
-        /// <param name="job"></param>
+        /// <param name="classJob"></param>
         /// <returns></returns>
-        public static string GetRoleName(this ClassJob job) => job switch
-        {
-            { Role: (byte)ClassJobRole.Misc } => "Misc",
-            { Role: (byte)ClassJobRole.Tank } => "Tank",
-            { Role: (byte)ClassJobRole.MeleeDPS } => "Melee DPS",
-            { Role: (byte)ClassJobRole.RangedDPS } => "Ranged DPS",
-            { Role: (byte)ClassJobRole.Healer } => "Healer",
-            _ => "Unknown",
-        };
+        public static ClassJobRole GetJobRole(this ClassJob classJob) => (ClassJobRole)classJob.Role;
     }
 }
