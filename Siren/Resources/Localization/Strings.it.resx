@@ -43,7 +43,7 @@
     <value>Alliance Raid</value>
   </data>
   <data name="ContentType_Unknown" xml:space="preserve">
-    <value>Unknown</value>
+    <value>Sconosciuto</value>
   </data>
   <data name="ContentType_Roulette" xml:space="preserve">
     <value>Roulette</value>
@@ -64,7 +64,7 @@
     <value>PvP</value>
   </data>
   <data name="ContentType_QuestBattle" xml:space="preserve">
-    <value>Quest Battle</value>
+    <value>Battaglia Quest</value>
   </data>
   <data name="ContentType_FATE" xml:space="preserve">
     <value>FATE</value>
@@ -85,7 +85,7 @@
     <value>Tribal Quest</value>
   </data>
   <data name="ContentType_OverallCompletion" xml:space="preserve">
-    <value>Overall Completion</value>
+    <value>Completamento Globale</value>
   </data>
   <data name="ContentType_PlayerCommendation" xml:space="preserve">
     <value>Player Commendation</value>
@@ -157,7 +157,7 @@
     <value>Guildhests</value>
   </data>
   <data name="ContentType_OverallCompletion_Plural" xml:space="preserve">
-    <value>Overall Completions</value>
+    <value>Completamento Globale</value>
   </data>
   <data name="ContentType_PlayerCommendation_Plural" xml:space="preserve">
     <value>Player Commendations</value>
@@ -190,10 +190,10 @@
     <value>Tribal Quests</value>
   </data>
   <data name="ContentType_Unknown_Plural" xml:space="preserve">
-    <value>Unknown</value>
+    <value>Sconosciuto</value>
   </data>
   <data name="ContentType_VCDungeon_Plural" xml:space="preserve">
-    <value>V&amp;C Dungeons</value>
+    <value>V&amp;C Dungeon</value>
   </data>
   <data name="ContentType_WonderousTails_Plural" xml:space="preserve">
     <value>Wonderous Tails</value>
