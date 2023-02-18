@@ -2,7 +2,7 @@
 
 # Siren
 
-<img src=".assets/icons/Siren.png" alt="Siren" width="15%" />
+<img src=".assets/icons/Siren.png" alt="Siren" width="25%" />
 
 Una collezione di utility usati nei plugin Dalamud di FFXIVITA.
 
