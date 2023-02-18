@@ -1,13 +1,12 @@
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace Siren.Game.Enums
 {
     /// <summary>
-    ///  A mapping of Chat UI colours to their IDs.
+    ///     A mapping of Chat UI colours to their IDs.
     /// </summary>
     /// <remarks>
-    /// Reference image: https://github.com/ffxivita/Siren/blob/main/.assets/uiColours.png
+    ///     Reference image: https://github.com/BitsOfAByte/Siren/blob/main/.assets/uiColours.png
     /// </remarks>
-     public enum ChatUiColourKey : ushort
+    public enum ChatUiColourKey : ushort
     {
         White1 = 0,
         White2 = 1,

@@ -5,7 +5,6 @@ using Dalamud.Game.ClientState.Objects.Types;
 using FFXIVClientStructs.FFXIV.Client.UI.Agent;
 using Siren.Game.Enums;
 
-
 namespace Siren.Game.Extensions
 {
     /// <summary>
@@ -14,7 +13,7 @@ namespace Siren.Game.Extensions
     public static class PlayerCharacterExtensions
     {
         /// <summary>
-        ///     Creates a <see cref="Dalamud.Game.ClientState.Objects.Types.GameObject" /> from the <see cref="PlayerCharacter" />
+        ///     Creates a <see cref="GameObject" /> from the <see cref="PlayerCharacter" />
         ///     address.
         /// </summary>
         /// <param name="pc"></param>
@@ -81,7 +80,7 @@ namespace Siren.Game.Extensions
         /// <param name="pc"></param>
         /// <exception cref="InvalidOperationException">
         ///     Thrown if unable to create a
-        ///     <see cref="Dalamud.Game.ClientState.Objects.Types.GameObject" /> from the <see cref="PlayerCharacter" /> address.
+        ///     <see cref="GameObject" /> from the <see cref="PlayerCharacter" /> address.
         /// </exception>
         public static unsafe void OpenExamine(this PlayerCharacter pc) => AgentInspect.Instance()->ExamineCharacter(pc.ObjectId);
 

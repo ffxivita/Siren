@@ -5,7 +5,6 @@ using Dalamud.Interface;
 using Dalamud.Interface.Windowing;
 using Siren.IoC.Internal;
 
-
 namespace Siren.UserInterface.Windowing
 {
     /// <summary>

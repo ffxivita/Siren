@@ -1,4 +1,4 @@
-using FFXIVClientStructs.FFXIV.Common.Math;
+using System.Numerics;
 using ImGuiNET;
 using Siren.UserInterface.Style;
 

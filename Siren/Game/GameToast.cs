@@ -1,7 +1,6 @@
 using Dalamud.Game.Gui.Toast;
 using Dalamud.Game.Text.SeStringHandling;
 
-
 namespace Siren.Game
 {
     /// <summary>

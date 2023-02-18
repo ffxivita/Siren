@@ -5,7 +5,6 @@ using ImGuiScene;
 using Siren.Caching.Collections;
 using Siren.IoC.Internal;
 
-
 namespace Siren.Caching
 {
     /// <summary>

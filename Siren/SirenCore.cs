@@ -34,14 +34,14 @@ namespace Siren
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///         Initialize is required to be called before accessing any Sirensong services, as it is responsible for creating
+        ///         Initialize is required to be called before accessing any Siren services, as it is responsible for creating
         ///         Both a <see cref="SirenServiceContainer" /> and a <see cref="SharedServices" /> instance.
         ///     </para>
         /// </remarks>
         /// <param name="pluginInterface">Your plugin's <see cref="DalamudPluginInterface" />.</param>
         /// <param name="pluginName"></param>
-        /// <exception cref="InvalidOperationException">Thrown if Sirensong has already been initialized.</exception>
-        /// <exception cref="ObjectDisposedException">Thrown if Sirensong has been disposed.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if Siren has already been initialized.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown if Siren has been disposed.</exception>
         public static void Initialize(DalamudPluginInterface pluginInterface, string pluginName)
         {
             // Set initializer information.
@@ -52,11 +52,11 @@ namespace Siren
             SharedServices.Initialize(pluginInterface);
 
             // Log initialization.
-            SirenLog.Information($"Initialized Sirensong for {pluginName}.");
+            SirenLog.Information($"Initialized Siren for {pluginName}.");
         }
 
         /// <summary>
-        ///     Disposes of Sirensong resources.
+        ///     Disposes of Siren resources.
         /// </summary>
         public static void Dispose()
         {
@@ -64,7 +64,7 @@ namespace Siren
             {
                 IoC.Dispose();
 
-                SirenLog.Information($"Disposed of Sirensong for {InitializerName}.");
+                SirenLog.Information($"Disposed of Siren for {InitializerName}.");
 
                 disposedValue = true;
             }

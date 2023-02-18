@@ -14,7 +14,6 @@ using Siren.IoC;
 using Siren.Resources.Localization;
 using Condition = Dalamud.Game.ClientState.Conditions.Condition;
 
-
 namespace Siren
 {
     /// <summary>
